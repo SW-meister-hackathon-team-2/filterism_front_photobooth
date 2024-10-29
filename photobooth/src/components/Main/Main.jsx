@@ -42,7 +42,7 @@ const Main = () => {
 
   useEffect(() => {
     if (image.length === 8) {
-      navigate('result');
+      navigate('result/test');
     }
   }, [image, navigate]);
 
@@ -67,6 +67,13 @@ const Main = () => {
 
   const handleWebcamLoaded = () => {
     setLoading(false);
+  };
+  const videoConstraints = {
+    facingMode: 'user',
+    width: 1798,
+    height: 1080,
+    // CSS로 반전 적용
+    transform: 'scale(-1, 1)', // x축으로 반전
   };
 
   return (
@@ -94,8 +101,11 @@ const Main = () => {
           screenshotFormat="image/jpeg"
           className="webcam"
           onUserMedia={handleWebcamLoaded}
+          style={{ transform: 'scaleX(-1)' }} // 웹캠 반전
         />
         <canvas ref={canvasRef} className="canvas" />
+        <M.FramingImage src="/assets/imgs/frame1.png" alt="Framing" />
+
         {flash && <M.FlashOverlay />}
       </M.CamWrapper>
       <M.SideWrapper>

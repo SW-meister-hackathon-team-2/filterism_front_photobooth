@@ -120,3 +120,11 @@ export const NumberOfShots = styled.img`
   margin-right: 6px;
   margin-top: 6px;
 `;
+export const FramingImage = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+`;

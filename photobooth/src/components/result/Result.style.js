@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -14,8 +14,6 @@ export const ResultWrapper = styled.div`
   align-items: center;
   position: relative;
 `;
-
-
 
 export const ResultContent = styled.div`
   /* width: 450px;
@@ -45,23 +43,23 @@ export const ResultContent = styled.div`
   /* > img {
     width: 80%;
   } */
-  img:nth-child(1){
-    margin-top:23px;
+  img:nth-child(1) {
+    margin-top: 23px;
   }
 `;
 
 export const UserImg = styled.img`
-    width: 80%;
-    z-index:2;
-`
+  width: 80%;
+  z-index: 2;
+`;
 
 export const ResultImg = styled.img`
-    width:100%;
-    height:100%;
-    position:absolute;
-    z-index:1;
-    object-fit:cover; 
-`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  object-fit: cover;
+`;
 
 export const ResultLogo = styled.div`
   display: flex;
@@ -69,7 +67,7 @@ export const ResultLogo = styled.div`
   justify-content: center;
   align-items: center;
   color: white;
-  z-index:2;
+  z-index: 2;
 
   img {
     width: 100px;
@@ -77,9 +75,9 @@ export const ResultLogo = styled.div`
   > p {
     /* font-size:10px; */
     margin: 0px 0px 7px 0px;
-    color:${(props) => props.color};
-    font-weight:${(props) => props.bold ? "bold" : "normal"};
-    font-style:${(props) => props.ital ? "italic" : "normal"};
+    color: ${(props) => props.color};
+    font-weight: ${(props) => (props.bold ? 'bold' : 'normal')};
+    font-style: ${(props) => (props.ital ? 'italic' : 'normal')};
   }
 `;
 
@@ -100,7 +98,7 @@ export const ButtonWrapper = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   @media print {
-    display:none;
+    display: none;
   }
   h2 {
     margin-bottom: 10px;
@@ -112,7 +110,6 @@ export const BasicBackWrapper = styled.div`
   h2 {
     margin-top: 25px;
   }
-
 `;
 
 export const BasicBacks = styled.div`
@@ -135,13 +132,12 @@ export const BasicBack = styled.div`
 `;
 
 export const ImgBackWrapper = styled.div`
-  width:100%;
+  width: 100%;
 `;
 export const ImgBack = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width:100%;
-
+  width: 100%;
 `;
 
 export const CommentWrapper = styled.div`
@@ -155,41 +151,38 @@ export const CommentWrapper = styled.div`
   }
 `;
 
-export const CommentOptionWrapper = styled.div`
-  
-`;
+export const CommentOptionWrapper = styled.div``;
 export const CommentOptions = styled.div`
   display: Flex;
-  align-items:Center;
+  align-items: Center;
 `;
 export const CommentOption = styled.div`
-    width: 50px;
-    height: 50px;
-    border-radius: 10px;
-    ${(props) => props.selected ? "border: 2px solid #0095f6;" : "border: 1px solid #a0a0a0;"};
-    cursor: pointer;
-    margin: 10px 10px 10px 0px;
-    display:flex;
-    justify-content:center;
-    align-items:Center;
-
-`
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  ${(props) => (props.selected ? 'border: 2px solid #0095f6;' : 'border: 1px solid #a0a0a0;')};
+  cursor: pointer;
+  margin: 10px 10px 10px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: Center;
+`;
 export const CommentOptionColor = styled(CommentOption)`
-    background-color:${(props) => props.att === "black" ? "white" : "black"};
-    color:${(props) => props.att};
-`
+  background-color: ${(props) => (props.att === 'black' ? 'white' : 'black')};
+  color: ${(props) => props.att};
+`;
 export const CommentOptionBold = styled(CommentOption)`
-    font-weight:bold;
-`
+  font-weight: bold;
+`;
 export const CommentOptionItal = styled(CommentOption)`
-    font-style:italic;
-`
+  font-style: italic;
+`;
 
 export const CommentOptionSplit = styled.div`
-    margin:0px 10px;
-    font-size:25px;
-    font-weight:bold;
-`
+  margin: 0px 10px;
+  font-size: 25px;
+  font-weight: bold;
+`;
 
 export const ExitWrapper = styled.div`
   width: 15%;
@@ -207,9 +200,8 @@ export const Exit = styled.h3`
   align-items: Center;
   cursor: pointer;
 `;
-export const ExplanText = styled.img`
-`
+export const ExplanText = styled.img``;
 export const logo = styled.img`
-height:112px;
-width:250px;
-`
+  height: 112px;
+  width: 250px;
+`;
