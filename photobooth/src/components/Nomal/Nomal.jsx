@@ -1,8 +1,8 @@
 import React from 'react';
-import * as S from './Main.style';
+import * as S from './Nomal.style';
 
-const Main = () => {
+const Nomal = () => {
   return <S.Wrapper></S.Wrapper>;
 };
 
-export default Main;
+export default Nomal;
