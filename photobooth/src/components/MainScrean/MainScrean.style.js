@@ -70,4 +70,5 @@ export const Input = styled.input`
   border: none;
   outline: none;
   color: #3a3a7a;
+  caret-color: ${(props) => (props.isMaxLength ? 'transparent' : '#3a3a7a')};
 `;
