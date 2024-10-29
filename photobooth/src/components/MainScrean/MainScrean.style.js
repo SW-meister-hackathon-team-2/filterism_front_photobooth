@@ -42,6 +42,12 @@ export const Title = styled.img`
   transform: translateX(-50%);
   left: 50%;
 `;
+export const Startbutton = styled.img`
+  position: absolute;
+  top: 770px;
+  transform: translateX(-50%);
+  left: 50%;
+`;
 
 export const Logo = styled.img`
   width: 100%;

@@ -23,6 +23,7 @@ const MainScrean = () => {
         <S.Logo src="/assets/imgs/right.png" />
         <S.Title src="/assets/imgs/rightlogo.png" />
         <S.Input type="text" maxlength="5" />
+        <S.Startbutton src="/assets/imgs/startbutton.png" />
       </S.Div>
     </S.Wrapper>
   );
