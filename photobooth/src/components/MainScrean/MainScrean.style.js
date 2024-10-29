@@ -46,3 +46,22 @@ export const Title = styled.img`
 export const Logo = styled.img`
   width: 100%;
 `;
+
+export const Input = styled.input`
+  width: 410px;
+  height: 208px;
+  position: absolute;
+  top: 530px;
+  transform: translateX(-50%);
+  left: 50%;
+  background-color: transparent;
+  border-radius: 17px;
+  box-sizing: border-box;
+  padding-left: 70px;
+  padding-bottom: 10px;
+  font-size: 36px;
+  letter-spacing: 42px;
+  border: none;
+  outline: none;
+  color: #3a3a7a;
+`;
