@@ -14,6 +14,22 @@ export const Div = styled.div`
   text-align: center;
   position: relative;
   cursor: pointer;
+  overflow-y: hidden;
+
+  ${({ color }) =>
+    color === 'blue' &&
+    `
+    &::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      border: 3px solid #36358D;
+      pointer-events: none;
+        }
+  `}
 `;
 
 export const MidLogo = styled.img`
@@ -25,4 +41,8 @@ export const Title = styled.img`
   bottom: 80px;
   transform: translateX(-50%);
   left: 50%;
+`;
+
+export const Logo = styled.img`
+  width: 100%;
 `;

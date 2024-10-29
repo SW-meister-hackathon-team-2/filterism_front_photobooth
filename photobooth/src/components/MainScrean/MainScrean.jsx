@@ -11,12 +11,18 @@ const MainScrean = () => {
 
   return (
     <S.Wrapper>
-      <S.Div color="red">1</S.Div>
+      <S.Div color="red">
+        <S.Logo src="/assets/imgs/left.png" />
+        <S.Title src="/assets/imgs/midtitle.png" />
+      </S.Div>
       <S.Div color="black" onClick={handleDivClick}>
         <S.MidLogo src="/assets/imgs/midlogo.png" />
         <S.Title src="/assets/imgs/midtitle.png" />
       </S.Div>
-      <S.Div color="blue">3</S.Div>
+      <S.Div color="blue">
+        <S.Logo src="/assets/imgs/right.png" />
+        <S.Title src="/assets/imgs/rightlogo.png" />
+      </S.Div>
     </S.Wrapper>
   );
 };
