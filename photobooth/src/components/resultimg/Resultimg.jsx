@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 import { imageState, selectedImageState } from '../../global/image';
 import * as R from './Resultimg.style';
 
-const Result = () => {
+const Result = ({ event }) => {
   const [images] = useRecoilState(imageState);
   const [selectedImages, setSelectedImages] = useRecoilState(selectedImageState);
 
@@ -19,6 +19,8 @@ const Result = () => {
       }
     });
   };
+  const handleNextAction = () => {};
+  const handlePrint = () => {};
   const today = new Date();
   const formattedDate = `${today.getFullYear()}.${String(today.getMonth() + 1).padStart(2, '0')}.${String(
     today.getDate()
@@ -49,22 +51,22 @@ const Result = () => {
       <R.PhotoContainer>
         <R.PhotoWrapper>
           <R.ImgContainer>
-            <R.JFrameImage src="/assets/imgs/jframe.png" alt="JFrame" />
+            {event == true && <R.JFrameImage src="/assets/imgs/jframe.png" alt="JFrame" />}
             <R.RelativeDiv marginTop="20px">
               <R.ImgContent src={selectedImages[0] || '/assets/imgs/testimg.png'} style={{ transform: 'scaleX(-1)' }} />
-              <R.FramingImage src="/assets/imgs/frame1.png" alt="Framing" />
+              {event == true && <R.FramingImage src="/assets/imgs/frame1.png" alt="Framing" />}
             </R.RelativeDiv>
             <R.RelativeDiv>
               <R.ImgContent src={selectedImages[1] || '/assets/imgs/testimg.png'} style={{ transform: 'scaleX(-1)' }} />
-              <R.FramingImage src="/assets/imgs/frame2.png" alt="Framing" />
+              {event == true && <R.FramingImage src="/assets/imgs/frame2.png" alt="Framing" />}
             </R.RelativeDiv>
             <R.RelativeDiv>
               <R.ImgContent src={selectedImages[2] || '/assets/imgs/testimg.png'} style={{ transform: 'scaleX(-1)' }} />
-              <R.FramingImage src="/assets/imgs/frame3.png" alt="Framing" />
+              {event == true && <R.FramingImage src="/assets/imgs/frame3.png" alt="Framing" />}
             </R.RelativeDiv>
             <R.RelativeDiv>
               <R.ImgContent src={selectedImages[3] || '/assets/imgs/testimg.png'} style={{ transform: 'scaleX(-1)' }} />
-              <R.FramingImage src="/assets/imgs/frame4.png" alt="Framing" />
+              {event == true && <R.FramingImage src="/assets/imgs/frame4.png" alt="Framing" />}
             </R.RelativeDiv>
             <R.LogoWrapper>
               <R.Logo src="/assets/imgs/imglogo.png" />
@@ -73,6 +75,25 @@ const Result = () => {
           </R.ImgContainer>
         </R.PhotoWrapper>
       </R.PhotoContainer>
+      {selectedImages.length === 4 && (
+        <div>
+          {event === true ? (
+            <img
+              src="/assets/imgs/printbutton.png"
+              style={{ position: 'absolute', right: '30px', bottom: '30px', width: '100px', cursor: 'pointer' }}
+              onClick={handlePrint}
+              alt="Print Button"
+            />
+          ) : (
+            <img
+              src="/assets/imgs/nextbutton.png"
+              style={{ position: 'absolute', right: '30px', bottom: '30px', width: '100px', cursor: 'pointer' }}
+              onClick={handleNextAction}
+              alt="Another Button"
+            />
+          )}
+        </div>
+      )}
     </R.Wrapper>
   );
 };

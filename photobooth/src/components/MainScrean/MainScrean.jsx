@@ -5,9 +5,6 @@ import * as S from './MainScrean.style';
 const MainScrean = () => {
   const navigate = useNavigate();
 
-  const handleDivClick = () => {
-    navigate('/main');
-  };
   const [value, setValue] = useState('');
 
   const handleChange = (e) => {
@@ -18,11 +15,21 @@ const MainScrean = () => {
 
   return (
     <S.Wrapper>
-      <S.Div color="red">
+      <S.Div
+        color="red"
+        onClick={() => {
+          navigate('/main/event');
+        }}
+      >
         <S.Logo src="/assets/imgs/left.png" />
         <S.Title src="/assets/imgs/midtitle.png" />
       </S.Div>
-      <S.Div color="black" onClick={handleDivClick}>
+      <S.Div
+        color="black"
+        onClick={() => {
+          navigate('/main');
+        }}
+      >
         <S.MidLogo src="/assets/imgs/midlogo.png" />
         <S.Title src="/assets/imgs/midtitle.png" />
       </S.Div>

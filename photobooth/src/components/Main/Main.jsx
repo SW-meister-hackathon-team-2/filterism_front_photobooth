@@ -5,12 +5,11 @@ import '@tensorflow/tfjs-core';
 import '@tensorflow/tfjs-converter';
 import '@tensorflow/tfjs-backend-webgl';
 import Webcam from 'react-webcam';
-import takePicture from '../../assets/takePicture.svg';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { imageState } from '../../global/image';
 
-const Main = () => {
+const Main = ({ event }) => {
   const canvasRef = useRef(null);
   const webcamRef = useRef(null);
   const [image, setImage] = useRecoilState(imageState);
@@ -42,7 +41,11 @@ const Main = () => {
 
   useEffect(() => {
     if (image.length === 8) {
-      navigate('result/test');
+      if (event == true) {
+        navigate('result');
+      } else {
+        navigate('result');
+      }
     }
   }, [image, navigate]);
 
@@ -124,7 +127,7 @@ const Main = () => {
           style={{ transform: 'scaleX(-1)' }}
         />
         <canvas ref={canvasRef} className="canvas" />
-        <M.FramingImage src={getFrameImage()} alt="Framing" />
+        {event && <M.FramingImage src={getFrameImage()} alt="Framing" />}
         {flash && <M.FlashOverlay />}
         <M.InstructionMessage>
           {countdown > 0 ? `촬영 중입니다. ${countdown}초 후 촬영됩니다.` : '스페이스바를 눌러 촬영을 시작하세요'}

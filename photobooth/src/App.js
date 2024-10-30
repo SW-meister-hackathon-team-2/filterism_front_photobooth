@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import MainScrean from './components/MainScrean/MainScrean.jsx';
-import Main from './components/main/Main.jsx';
+import Main from './components/Main/Main.jsx';
 import Result from './components/result/Result.jsx';
 import Resultimg from './components/resultimg/Resultimg.jsx';
 function App() {
@@ -9,11 +9,11 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<MainScrean />} />
-        <Route path="/main" element={<Main />} />
-        <Route path="/main/result" element={<Result />} />
-
+        <Route path="/main" element={<Main event={false} />} />
+        <Route path="/main/event" element={<Main event={true} />} />
         <Route path="/" element={<Main />}></Route>
-        <Route path="/main/result/test" element={<Resultimg />} />
+        <Route path="/main/result" element={<Resultimg event={false} />} />
+        <Route path="/main/event/result" element={<Resultimg event={true} />} />
       </Routes>
     </div>
   );
