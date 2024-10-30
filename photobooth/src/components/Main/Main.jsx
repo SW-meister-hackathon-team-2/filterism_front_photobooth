@@ -7,12 +7,13 @@ import '@tensorflow/tfjs-backend-webgl';
 import Webcam from 'react-webcam';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { imageState } from '../../global/image';
+import { imageState, frameimageState } from '../../global/image';
 
-const Main = ({ event, remove }) => {
+const Main = ({ event, remove, frame1 }) => {
   const canvasRef = useRef(null);
   const webcamRef = useRef(null);
   const [image, setImage] = useRecoilState(imageState);
+  const [frame, setFrame] = useRecoilState(frameimageState);
   const [loading, setLoading] = useState(true);
   const [countdown, setCountdown] = useState(0);
   const [flash, setFlash] = useState(false);
@@ -45,6 +46,8 @@ const Main = ({ event, remove }) => {
         navigate('/main/event/result');
       } else if (remove === true) {
         navigate('/main/remove/result');
+      } else if (frame1 === true) {
+        navigate('/main/frame/result');
       } else {
         navigate('/main/result');
       }
@@ -86,6 +89,17 @@ const Main = ({ event, remove }) => {
     }
   };
 
+  const getFrame = () => {
+    if (image.length === 0 || image.length === 4) {
+      return frame[0];
+    } else if (image.length === 1 || image.length === 5) {
+      return frame[1];
+    } else if (image.length === 2 || image.length === 6) {
+      return frame[2];
+    } else if (image.length === 3 || image.length === 7) {
+      return frame[3];
+    }
+  };
   const handleKeyDown = (event) => {
     if (event.code === 'Space') {
       event.preventDefault();
@@ -128,7 +142,8 @@ const Main = ({ event, remove }) => {
           style={{ transform: 'scaleX(-1)' }}
         />
         <canvas ref={canvasRef} className="canvas" />
-        {event && !loading && <M.FramingImage src={getFrameImage()} alt="Framing" />}
+        {event && !loading && <M.FramingImage src={getFrameImage()} />}
+        {frame && !loading && <M.FramingImage src={getFrame()} />}
         {flash && <M.FlashOverlay />}
         <M.InstructionMessage>
           {countdown > 0 ? `촬영 중입니다. ${countdown}초 후 촬영됩니다.` : '스페이스바를 눌러 촬영을 시작하세요'}

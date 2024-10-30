@@ -27,21 +27,24 @@ export const ResultContent = styled.div`
   @media print {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
-    left: 0px;
-    top: 0px;
+
+    .FramingImage {
+      display: block; // Make sure it is displayed
+      z-index: 10; // Bring it to the front
+      position: absolute; // Ensure it is positioned correctly
+    }
 
     @page {
-      margin: 0px;
+      margin: 0;
     }
   }
-
   box-sizing: border-box;
   overflow: hidden;
   & > div {
     border: 1px solid gray;
     box-sizing: border-box;
     width: 300px;
-    height: 225px;
+    height: 180px;
     &:nth-child(1) {
       border-top: 2px solid black;
       border-left: 2px solid black;
@@ -74,7 +77,8 @@ export const ResultContent = styled.div`
 
 export const UserImg = styled.img`
   width: 300px;
-  height: auto;
+  height: 180px;
+  background-color: lightgray;
   z-index: 2;
   transition: opacity 0.3s ease;
   cursor: pointer;

@@ -33,8 +33,8 @@ export const ImgContainer = styled.div`
 `;
 
 export const ImgContent = styled.img`
-  width: 260px;
-  height: 158px;
+  width: 100%;
+  height: 100%;
   z-index: 6;
   position: relative;
   margin-top: ${(props) => props.marginTop || '0'};
@@ -57,6 +57,7 @@ export const DateText = styled.p`
 
 export const RelativeDiv = styled.div`
   position: relative;
+  background-color: lightgray;
   width: 260px;
   height: 158px;
   margin-top: ${(props) => props.marginTop || '0'};

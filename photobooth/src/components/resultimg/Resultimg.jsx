@@ -1,15 +1,17 @@
 import React, { useRef } from 'react';
 import { useRecoilState } from 'recoil';
-import { imageState, selectedImageState } from '../../global/image';
+import { imageState, selectedImageState, frameimageState, codeState } from '../../global/image';
 import * as R from './Resultimg.style';
 import { useNavigate } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 
-const Result = ({ event, remove }) => {
+const Result = ({ event, remove, frame1 }) => {
+  const [frame, setFrame] = useRecoilState(frameimageState);
   const [images] = useRecoilState(imageState);
   const [selectedImages, setSelectedImages] = useRecoilState(selectedImageState);
   const navigate = useNavigate();
   const photoRef = useRef();
+  const [code] = useRecoilState(codeState);
 
   const handleImageClick = (image) => {
     setSelectedImages((prevSelected) => {
@@ -32,17 +34,43 @@ const Result = ({ event, remove }) => {
     }
   };
 
-  const handlePrint = () => {
+  const handlePrint = async () => {
     if (photoRef.current) {
-      html2canvas(photoRef.current).then((canvas) => {
-        const link = document.createElement('a');
-        link.href = canvas.toDataURL('image/png');
-        link.download = 'photo.png';
-        link.click();
+      // Add any additional styles if necessary before rendering
+      // e.g., set frame[4] style dynamically if not set before
+
+      const canvas = await html2canvas(photoRef.current, {
+        useCORS: true, // Allows cross-origin images to be used
       });
+
+      const link = document.createElement('a');
+      link.href = canvas.toDataURL('image/png');
+      link.download = 'photo.png';
+      link.click();
+
+      if (frame1 === true) {
+        try {
+          const response = await fetch(`https://b7e1-118-42-92-47.ngrok-free.app/api/template/${code}/use`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+              'ngrok-skip-browser-warning': true,
+            },
+            body: JSON.stringify({}),
+          });
+
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+
+          const data = await response.json();
+          console.log('Success:', data);
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
     }
   };
-
   const today = new Date();
   const formattedDate = `${today.getFullYear()}.${String(today.getMonth() + 1).padStart(2, '0')}.${String(
     today.getDate()
@@ -71,24 +99,27 @@ const Result = ({ event, remove }) => {
       </R.ResultWrapper>
       <R.PhotoContainer>
         <R.PhotoWrapper ref={photoRef}>
-          <R.ImgContainer>
+          <R.ImgContainer style={{ background: frame[4] ? `url(${frame[4]})` : 'white' }}>
             <R.RelativeDiv marginTop="20px">
               <R.ImgContent src={selectedImages[0]} style={{ transform: 'scaleX(-1)' }} />
-              {event === true && <R.FramingImage src={`/assets/imgs/frame1.png`} alt="Framing" />}
+              {event === true && <R.FramingImage src="/assets/imgs/frame1.png" />}
+              {frame1 === true && <R.FramingImage src={frame[0]} />}
             </R.RelativeDiv>
             <R.RelativeDiv>
               <R.ImgContent src={selectedImages[1]} style={{ transform: 'scaleX(-1)' }} />
-              {event === true && <R.FramingImage src={`/assets/imgs/frame2.png`} alt="Framing" />}
+              {event === true && <R.FramingImage src="/assets/imgs/frame2.png" />}
+              {frame1 === true && <R.FramingImage src={frame[1]} />}
             </R.RelativeDiv>
             <R.RelativeDiv>
               <R.ImgContent src={selectedImages[2]} style={{ transform: 'scaleX(-1)' }} />
-              {event === true && <R.FramingImage src={`/assets/imgs/frame3.png`} alt="Framing" />}
+              {event === true && <R.FramingImage src="/assets/imgs/frame3.png" />}
+              {frame1 === true && <R.FramingImage src={frame[2]} />}
             </R.RelativeDiv>
             <R.RelativeDiv>
               <R.ImgContent src={selectedImages[3]} style={{ transform: 'scaleX(-1)' }} />
-              {event === true && <R.FramingImage src={`/assets/imgs/frame4.png`} alt="Framing" />}
+              {event === true && <R.FramingImage src="/assets/imgs/frame4.png" />}
+              {frame1 === true && <R.FramingImage src={frame[3]} />}
             </R.RelativeDiv>
-
             <R.LogoWrapper>
               <R.Logo src="/assets/imgs/imglogo.png" />
             </R.LogoWrapper>
@@ -98,7 +129,7 @@ const Result = ({ event, remove }) => {
       </R.PhotoContainer>
       {selectedImages.length === 4 && (
         <div>
-          {event === true ? (
+          {event || frame1 ? (
             <img
               src="/assets/imgs/printbuttonwhite.png"
               style={{ position: 'absolute', right: '30px', bottom: '30px', width: '100px', cursor: 'pointer' }}

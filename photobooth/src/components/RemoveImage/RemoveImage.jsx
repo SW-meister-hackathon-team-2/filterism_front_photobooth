@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import * as R from './RemoveImage.style';
 import { useRecoilState } from 'recoil';
 import { selectedImageState } from '../../global/image';
 import axios from 'axios';
 
 const RemoveImage = () => {
-  const [selectedImages] = useRecoilState(selectedImageState);
-  const [processedImages, setProcessedImages] = useState([]);
+  const [selectedImages, setSelectedImages] = useRecoilState(selectedImageState);
   const today = new Date();
   const formattedDate = `${today.getFullYear()}.${String(today.getMonth() + 1).padStart(2, '0')}.${String(
     today.getDate()
@@ -36,6 +35,7 @@ const RemoveImage = () => {
       return image; // 실패 시 원본 이미지 반환
     }
   };
+
   useEffect(() => {
     const processImages = async () => {
       if (selectedImages.length > 0) {
@@ -44,7 +44,7 @@ const RemoveImage = () => {
             return await removeBackground(image);
           })
         );
-        setProcessedImages(newProcessedImages);
+        setSelectedImages(newProcessedImages); // selectedImages 상태 업데이트
       }
     };
 
@@ -56,16 +56,16 @@ const RemoveImage = () => {
       <R.PhotoWrapper>
         <R.ImgContainer>
           <R.RelativeDiv marginTop="20px">
-            <R.ImgContent src={processedImages[0] || selectedImages[0]} style={{ transform: 'scaleX(-1)' }} />
+            <R.ImgContent src={selectedImages[0]} style={{ transform: 'scaleX(-1)' }} />
           </R.RelativeDiv>
           <R.RelativeDiv>
-            <R.ImgContent src={processedImages[1] || selectedImages[1]} style={{ transform: 'scaleX(-1)' }} />
+            <R.ImgContent src={selectedImages[1]} style={{ transform: 'scaleX(-1)' }} />
           </R.RelativeDiv>
           <R.RelativeDiv>
-            <R.ImgContent src={processedImages[2] || selectedImages[2]} style={{ transform: 'scaleX(-1)' }} />
+            <R.ImgContent src={selectedImages[2]} style={{ transform: 'scaleX(-1)' }} />
           </R.RelativeDiv>
           <R.RelativeDiv>
-            <R.ImgContent src={processedImages[3] || selectedImages[3]} style={{ transform: 'scaleX(-1)' }} />
+            <R.ImgContent src={selectedImages[3]} style={{ transform: 'scaleX(-1)' }} />
           </R.RelativeDiv>
 
           <R.LogoWrapper>

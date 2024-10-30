@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './MainScrean.style';
-import { imageState, selectedImageState } from '../../global/image';
+import { imageState, selectedImageState, frameimageState, codeState } from '../../global/image';
 import { useResetRecoilState, useSetRecoilState } from 'recoil';
 
 const MainScrean = () => {
@@ -16,11 +16,15 @@ const MainScrean = () => {
   };
   const resetImageState = useResetRecoilState(imageState);
   const resetSelectedImageState = useResetRecoilState(selectedImageState);
-  const setImageState = useSetRecoilState(imageState);
-
+  const resetframeimageState = useResetRecoilState(frameimageState);
+  const setframeimageState = useSetRecoilState(frameimageState);
+  const setcodeState = useSetRecoilState(codeState);
+  const resetcodeState = useSetRecoilState(codeState);
   useEffect(() => {
     resetImageState();
     resetSelectedImageState();
+    resetframeimageState();
+    resetcodeState();
     localStorage.removeItem('recoil-persist');
   }, []);
 
@@ -45,8 +49,9 @@ https://b7e1-118-42-92-47.ngrok-free.app/api/template/${value}`,
         if (response.ok) {
           const data = await response.json();
           console.log('Success:', data);
-          setImageState(data.images);
-          navigate('/main/result');
+          setframeimageState(data.images);
+          setcodeState(data.id);
+          navigate('/main/frame');
         } else {
           console.error('Server response was not ok:', response.statusText);
         }

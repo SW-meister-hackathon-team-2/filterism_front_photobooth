@@ -12,3 +12,13 @@ export const selectedImageState = atom({
   default: [],
   effects_UNSTABLE: [persistAtom],
 });
+export const frameimageState = atom({
+  key: 'frameimageState',
+  default: [],
+  effects_UNSTABLE: [persistAtom],
+});
+export const codeState = atom({
+  key: 'codeState',
+  default: '',
+  effects_UNSTABLE: [persistAtom],
+});
