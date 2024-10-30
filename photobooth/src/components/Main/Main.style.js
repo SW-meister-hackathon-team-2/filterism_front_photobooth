@@ -47,11 +47,6 @@ export const Button = styled.button`
   background-color: #f2f2f2;
   margin: 10px;
 `;
-export const TakeButton = styled.image`
-  width: 100%;
-  height: 50%;
-  background-color: red;
-`;
 
 export const LoadingOverlay = styled.div`
   position: absolute;
@@ -127,4 +122,14 @@ export const FramingImage = styled.img`
   width: 100%;
   height: 100%;
   pointer-events: none;
+`;
+
+export const InstructionMessage = styled.p`
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 40px;
+  text-align: center;
 `;

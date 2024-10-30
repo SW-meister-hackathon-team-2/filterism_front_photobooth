@@ -81,6 +81,21 @@ const Main = () => {
     }
   };
 
+  // Handle spacebar press
+  const handleKeyDown = (event) => {
+    if (event.code === 'Space') {
+      event.preventDefault();
+      startCountdown();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   return (
     <M.Wrapper>
       <M.SideWrapper>
@@ -111,11 +126,13 @@ const Main = () => {
         <canvas ref={canvasRef} className="canvas" />
         <M.FramingImage src={getFrameImage()} alt="Framing" />
         {flash && <M.FlashOverlay />}
+        <M.InstructionMessage>
+          {countdown > 0 ? `촬영 중입니다. ${countdown}초 후 촬영됩니다.` : '스페이스바를 눌러 촬영을 시작하세요'}
+        </M.InstructionMessage>
       </M.CamWrapper>
       <M.SideWrapper>
         <M.NumberOfShots src="/assets/imgs/numberofshots.png" />
         <M.Number style={{ fontSize: '30px' }}>{image.length === 8 ? 8 : image.length + 1}/8</M.Number>
-        <M.TakeButton src={takePicture} onClick={startCountdown} alt="Take Picture" />
       </M.SideWrapper>
     </M.Wrapper>
   );
