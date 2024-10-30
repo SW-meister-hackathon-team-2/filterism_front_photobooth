@@ -68,12 +68,17 @@ const Main = () => {
   const handleWebcamLoaded = () => {
     setLoading(false);
   };
-  const videoConstraints = {
-    facingMode: 'user',
-    width: 1798,
-    height: 1080,
-    // CSS로 반전 적용
-    transform: 'scale(-1, 1)', // x축으로 반전
+
+  const getFrameImage = () => {
+    if (image.length === 0 || image.length === 4) {
+      return '/assets/imgs/frame1.png';
+    } else if (image.length === 1 || image.length === 5) {
+      return '/assets/imgs/frame2.png';
+    } else if (image.length === 2 || image.length === 6) {
+      return '/assets/imgs/frame3.png';
+    } else if (image.length === 3 || image.length === 7) {
+      return '/assets/imgs/frame4.png';
+    }
   };
 
   return (
@@ -101,15 +106,15 @@ const Main = () => {
           screenshotFormat="image/jpeg"
           className="webcam"
           onUserMedia={handleWebcamLoaded}
-          style={{ transform: 'scaleX(-1)' }} // 웹캠 반전
+          style={{ transform: 'scaleX(-1)' }}
         />
         <canvas ref={canvasRef} className="canvas" />
-        <M.FramingImage src="/assets/imgs/frame1.png" alt="Framing" />
-
+        <M.FramingImage src={getFrameImage()} alt="Framing" />
         {flash && <M.FlashOverlay />}
       </M.CamWrapper>
       <M.SideWrapper>
         <M.NumberOfShots src="/assets/imgs/numberofshots.png" />
+        <M.Number style={{ fontSize: '30px' }}>{image.length === 8 ? 8 : image.length + 1}/8</M.Number>
         <M.TakeButton src={takePicture} onClick={startCountdown} alt="Take Picture" />
       </M.SideWrapper>
     </M.Wrapper>

@@ -34,8 +34,8 @@ export const SideWrapper = styled.div`
   width: 160px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   background-color: white;
+  padding-left: 10px;
 `;
 
 export const Button = styled.button`
