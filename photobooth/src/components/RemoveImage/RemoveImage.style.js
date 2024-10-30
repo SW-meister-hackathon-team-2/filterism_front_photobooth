@@ -22,7 +22,7 @@ export const Photo = styled.img`
 export const ImgContainer = styled.div`
   width: 300px;
   height: 853px;
-  background-color: aqua;
+  background-color: white;
   position: absolute;
   top: 0;
   left: 0;

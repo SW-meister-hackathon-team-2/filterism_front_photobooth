@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useRef } from 'react'; // Import useRef
 import { useRecoilState } from 'recoil';
 import { imageState, selectedImageState } from '../../global/image';
 import * as R from './Resultimg.style';
 import { useNavigate } from 'react-router-dom';
+import html2canvas from 'html2canvas'; // Import html2canvas
 
 const Result = ({ event }) => {
   const [images] = useRecoilState(imageState);
   const [selectedImages, setSelectedImages] = useRecoilState(selectedImageState);
   const navigate = useNavigate();
+  const photoRef = useRef(); // Create a ref for capturing the section
 
   const handleImageClick = (image) => {
     setSelectedImages((prevSelected) => {
@@ -21,12 +23,22 @@ const Result = ({ event }) => {
       }
     });
   };
+
   const handleNextAction = () => {
-    console.log('1');
     navigate('/main/last');
   };
 
-  const handlePrint = () => {};
+  const handlePrint = () => {
+    if (photoRef.current) {
+      html2canvas(photoRef.current).then((canvas) => {
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = 'photo.png';
+        link.click();
+      });
+    }
+  };
+
   const today = new Date();
   const formattedDate = `${today.getFullYear()}.${String(today.getMonth() + 1).padStart(2, '0')}.${String(
     today.getDate()
@@ -35,11 +47,12 @@ const Result = ({ event }) => {
   return (
     <R.Wrapper>
       <R.ResultWrapper>
+        {' '}
+        {/* Add ref here to the wrapper */}
         <R.ResultContent>
           {images.map((image, idx) => (
-            <div>
+            <div key={idx}>
               <R.UserImg
-                key={idx}
                 src={image}
                 alt={`Image ${idx + 1}`}
                 onClick={() => handleImageClick(image)}
@@ -55,25 +68,25 @@ const Result = ({ event }) => {
         </R.ResultContent>
       </R.ResultWrapper>
       <R.PhotoContainer>
-        <R.PhotoWrapper>
+        <R.PhotoWrapper ref={photoRef}>
           <R.ImgContainer>
-            {event == true && <R.JFrameImage src="/assets/imgs/jframe.png" alt="JFrame" />}
             <R.RelativeDiv marginTop="20px">
-              <R.ImgContent src={selectedImages[0] || '/assets/imgs/testimg.png'} style={{ transform: 'scaleX(-1)' }} />
-              {event == true && <R.FramingImage src="/assets/imgs/frame1.png" alt="Framing" />}
+              <R.ImgContent src={selectedImages[0]} style={{ transform: 'scaleX(-1)' }} />
+              {event === true && <R.FramingImage src={`/assets/imgs/frame1.png`} alt="Framing" />}
             </R.RelativeDiv>
             <R.RelativeDiv>
-              <R.ImgContent src={selectedImages[1] || '/assets/imgs/testimg.png'} style={{ transform: 'scaleX(-1)' }} />
-              {event == true && <R.FramingImage src="/assets/imgs/frame2.png" alt="Framing" />}
+              <R.ImgContent src={selectedImages[1]} style={{ transform: 'scaleX(-1)' }} />
+              {event === true && <R.FramingImage src={`/assets/imgs/frame2.png`} alt="Framing" />}
             </R.RelativeDiv>
             <R.RelativeDiv>
-              <R.ImgContent src={selectedImages[2] || '/assets/imgs/testimg.png'} style={{ transform: 'scaleX(-1)' }} />
-              {event == true && <R.FramingImage src="/assets/imgs/frame3.png" alt="Framing" />}
+              <R.ImgContent src={selectedImages[2]} style={{ transform: 'scaleX(-1)' }} />
+              {event === true && <R.FramingImage src={`/assets/imgs/frame3.png`} alt="Framing" />}
             </R.RelativeDiv>
             <R.RelativeDiv>
-              <R.ImgContent src={selectedImages[3] || '/assets/imgs/testimg.png'} style={{ transform: 'scaleX(-1)' }} />
-              {event == true && <R.FramingImage src="/assets/imgs/frame4.png" alt="Framing" />}
+              <R.ImgContent src={selectedImages[3]} style={{ transform: 'scaleX(-1)' }} />
+              {event === true && <R.FramingImage src={`/assets/imgs/frame4.png`} alt="Framing" />}
             </R.RelativeDiv>
+
             <R.LogoWrapper>
               <R.Logo src="/assets/imgs/imglogo.png" />
             </R.LogoWrapper>
@@ -85,9 +98,9 @@ const Result = ({ event }) => {
         <div>
           {event === true ? (
             <img
-              src="/assets/imgs/printbutton.png"
+              src="/assets/imgs/printbuttonwhite.png"
               style={{ position: 'absolute', right: '30px', bottom: '30px', width: '100px', cursor: 'pointer' }}
-              onClick={handlePrint}
+              onClick={handlePrint} // Link handlePrint here
               alt="Print Button"
             />
           ) : (

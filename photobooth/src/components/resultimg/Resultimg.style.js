@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
+  background-color: lightgray;
 `;
 
 export const ResultWrapper = styled.div`
@@ -106,7 +107,7 @@ export const Photo = styled.img`
 export const ImgContainer = styled.div`
   width: 300px;
   height: 853px;
-  background-color: aqua;
+  background-color: white;
   position: absolute;
   top: 0;
   left: 0;
@@ -168,7 +169,7 @@ export const SelectContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10px;
-
+  background-color: white;
   p:nth-child(1) {
     color: lightgray;
     font-size: 20px;

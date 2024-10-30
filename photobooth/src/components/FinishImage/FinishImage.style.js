@@ -104,16 +104,19 @@ export const CommentOption = styled.div`
 `;
 
 export const CommentOptionColor = styled(CommentOption)`
-  background-color: ${(props) => (props.att === 'black' ? 'white' : 'black')};
+  background-color: ${(props) => (props.att === 'black' ? 'black' : 'white')};
   color: ${(props) => props.att};
 `;
 
 export const CommentOptionBold = styled(CommentOption)`
   font-weight: bold;
+
+  background-color: white;
 `;
 
 export const CommentOptionItal = styled(CommentOption)`
   font-style: italic;
+  background-color: white;
 `;
 
 export const CommentOptionSplit = styled.div`

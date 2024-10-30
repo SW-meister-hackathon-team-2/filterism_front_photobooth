@@ -11,9 +11,9 @@ const FinishImage = () => {
     today.getDate()
   ).padStart(2, '0')}`;
 
-  const [resultBackColor, setResultBackColor] = useState('black');
+  const [resultBackColor, setResultBackColor] = useState('white');
   const [formattedDate, setFormattedDate] = useState(initialFormattedDate);
-  const [commentColor, setCommentColor] = useState('white');
+  const [commentColor, setCommentColor] = useState('black');
   const [commentBold, setCommentBold] = useState(false);
   const [commentItal, setCommentItal] = useState(false);
 
@@ -33,7 +33,6 @@ const FinishImage = () => {
       });
     }
   };
-
   return (
     <R.Wrapper>
       <R.PhotoContainer>
@@ -94,19 +93,19 @@ const FinishImage = () => {
           <R.CommentOptionWrapper>
             <R.CommentOptions>
               <R.CommentOptionColor
-                selected={commentColor === 'black'}
                 att="black"
+                selected={commentColor === 'black'}
                 onClick={() => setCommentColor('black')}
               >
                 검정색
               </R.CommentOptionColor>
               <R.CommentOptionColor
-                att="white"
                 selected={commentColor === 'white'}
+                att="white"
                 onClick={() => setCommentColor('white')}
               >
                 흰색
-              </R.CommentOptionColor>
+              </R.CommentOptionColor>{' '}
               <R.CommentOptionSplit>|</R.CommentOptionSplit>
               <R.CommentOptionBold selected={commentBold} onClick={() => setCommentBold((prev) => !prev)}>
                 굵게
