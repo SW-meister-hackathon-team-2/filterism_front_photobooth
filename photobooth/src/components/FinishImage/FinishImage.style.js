@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
 export const PhotoContainer = styled.div`
-  margin-left: 150px;
+  margin-left: 300px;
   width: 650px;
   position: relative;
   align-content: center;
+
+  @media print {
+    width: 300px;
+  }
 `;
 
 export const PhotoWrapper = styled.div`
@@ -63,14 +67,21 @@ export const Wrapper = styled.div`
   height: 100vh;
   display: flex;
   background-color: lightgray;
+
+  @media print {
+    width: 0px;
+  }
 `;
 
 export const ToolContainer = styled.div`
   width: 600px;
-  height: 100vh;
-  background-color: red;
-  display: flex;
-  flex-direction: column;
+  height: 700px;
+  gap: 40px;
+  display: grid;
+  margin-top: 100px;
+  @media print {
+    display: none;
+  }
 `;
 
 export const CommentOptionWrapper = styled.div``;
