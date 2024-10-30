@@ -42,7 +42,7 @@ const Main = ({ event }) => {
   useEffect(() => {
     if (image.length === 8) {
       if (event == true) {
-        navigate('result');
+        navigate('event/result');
       } else {
         navigate('result');
       }

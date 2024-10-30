@@ -1,6 +1,8 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './MainScrean.style';
+import { useResetRecoilState } from 'recoil';
+import { imageState, selectedImageState } from '../../global/image';
 
 const MainScrean = () => {
   const navigate = useNavigate();
@@ -12,6 +14,14 @@ const MainScrean = () => {
       setValue(e.target.value);
     }
   };
+  const resetImageState = useResetRecoilState(imageState);
+  const resetSelectedImageState = useResetRecoilState(selectedImageState);
+
+  useEffect(() => {
+    resetImageState();
+    resetSelectedImageState();
+    localStorage.removeItem('recoil-persist');
+  }, []);
 
   return (
     <S.Wrapper>
