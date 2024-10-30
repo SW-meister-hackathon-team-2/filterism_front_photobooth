@@ -35,7 +35,7 @@ export const ResultContent = styled.div`
   }
 
   box-sizing: border-box;
-
+  overflow: hidden;
   & > div {
     border: 1px solid gray;
     box-sizing: border-box;
