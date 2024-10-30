@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { imageState } from '../../global/image';
 
-const Main = ({ event }) => {
+const Main = ({ event, remove }) => {
   const canvasRef = useRef(null);
   const webcamRef = useRef(null);
   const [image, setImage] = useRecoilState(imageState);
@@ -43,6 +43,8 @@ const Main = ({ event }) => {
     if (image.length === 8) {
       if (event == true) {
         navigate('/main/event/result');
+      } else if (remove === true) {
+        navigate('/main/remove/result');
       } else {
         navigate('/main/result');
       }

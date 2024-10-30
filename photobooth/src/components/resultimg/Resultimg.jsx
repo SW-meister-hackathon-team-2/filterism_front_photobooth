@@ -1,15 +1,15 @@
-import React, { useRef } from 'react'; // Import useRef
+import React, { useRef } from 'react';
 import { useRecoilState } from 'recoil';
 import { imageState, selectedImageState } from '../../global/image';
 import * as R from './Resultimg.style';
 import { useNavigate } from 'react-router-dom';
-import html2canvas from 'html2canvas'; // Import html2canvas
+import html2canvas from 'html2canvas';
 
-const Result = ({ event }) => {
+const Result = ({ event, remove }) => {
   const [images] = useRecoilState(imageState);
   const [selectedImages, setSelectedImages] = useRecoilState(selectedImageState);
   const navigate = useNavigate();
-  const photoRef = useRef(); // Create a ref for capturing the section
+  const photoRef = useRef();
 
   const handleImageClick = (image) => {
     setSelectedImages((prevSelected) => {
@@ -25,7 +25,11 @@ const Result = ({ event }) => {
   };
 
   const handleNextAction = () => {
-    navigate('/main/last');
+    if (remove) {
+      navigate('/remove');
+    } else {
+      navigate('/main/last');
+    }
   };
 
   const handlePrint = () => {
@@ -47,8 +51,6 @@ const Result = ({ event }) => {
   return (
     <R.Wrapper>
       <R.ResultWrapper>
-        {' '}
-        {/* Add ref here to the wrapper */}
         <R.ResultContent>
           {images.map((image, idx) => (
             <div key={idx}>
@@ -100,7 +102,7 @@ const Result = ({ event }) => {
             <img
               src="/assets/imgs/printbuttonwhite.png"
               style={{ position: 'absolute', right: '30px', bottom: '30px', width: '100px', cursor: 'pointer' }}
-              onClick={handlePrint} // Link handlePrint here
+              onClick={handlePrint}
               alt="Print Button"
             />
           ) : (

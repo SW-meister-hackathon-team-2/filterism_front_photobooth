@@ -44,7 +44,13 @@ export const Title = styled.img`
 `;
 export const Startbutton = styled.img`
   position: absolute;
-  top: 770px;
+  top: 700px;
+  transform: translateX(-50%);
+  left: 50%;
+`;
+export const Tembutton = styled.img`
+  position: absolute;
+  top: 800px;
   transform: translateX(-50%);
   left: 50%;
 `;
@@ -55,7 +61,7 @@ export const Logo = styled.img`
 
 export const Input = styled.input`
   width: 410px;
-  height: 208px;
+  height: 120px;
   position: absolute;
   top: 530px;
   transform: translateX(-50%);

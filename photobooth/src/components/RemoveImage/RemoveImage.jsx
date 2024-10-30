@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 import { selectedImageState } from '../../global/image';
 import axios from 'axios';
 
-const RemoveImage = ({ event }) => {
+const RemoveImage = () => {
   const [selectedImages] = useRecoilState(selectedImageState);
   const [processedImages, setProcessedImages] = useState([]);
   const today = new Date();
@@ -22,7 +22,7 @@ const RemoveImage = ({ event }) => {
           size: 'auto',
         },
         headers: {
-          'X-Api-Key': '5bN7adcNXatriD22PwjWSUes1',
+          'X-Api-Key': 'YEeqTdzDhJTGhTpthQhqtczi',
           'Content-Type': 'application/json',
         },
         responseType: 'arraybuffer',
@@ -55,23 +55,17 @@ const RemoveImage = ({ event }) => {
     <R.PhotoContainer>
       <R.PhotoWrapper>
         <R.ImgContainer>
-          {event && <R.JFrameImage src="/assets/imgs/jframe.png" alt="JFrame" />}
-
           <R.RelativeDiv marginTop="20px">
             <R.ImgContent src={processedImages[0] || selectedImages[0]} style={{ transform: 'scaleX(-1)' }} />
-            {event && <R.FramingImage src="/assets/imgs/frame1.png" alt="Framing" />}
           </R.RelativeDiv>
           <R.RelativeDiv>
             <R.ImgContent src={processedImages[1] || selectedImages[1]} style={{ transform: 'scaleX(-1)' }} />
-            {event && <R.FramingImage src="/assets/imgs/frame2.png" alt="Framing" />}
           </R.RelativeDiv>
           <R.RelativeDiv>
             <R.ImgContent src={processedImages[2] || selectedImages[2]} style={{ transform: 'scaleX(-1)' }} />
-            {event && <R.FramingImage src="/assets/imgs/frame3.png" alt="Framing" />}
           </R.RelativeDiv>
           <R.RelativeDiv>
             <R.ImgContent src={processedImages[3] || selectedImages[3]} style={{ transform: 'scaleX(-1)' }} />
-            {event && <R.FramingImage src="/assets/imgs/frame4.png" alt="Framing" />}
           </R.RelativeDiv>
 
           <R.LogoWrapper>

@@ -70,6 +70,7 @@ export const RelativeDiv = styled.div`
   width: 260px;
   height: 158px;
   margin-top: ${(props) => props.marginTop || '0'};
+  background-color: lightgray;
 `;
 
 export const JFrameImage = styled.img`

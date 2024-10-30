@@ -36,6 +36,7 @@ export const SideWrapper = styled.div`
   flex-direction: column;
   background-color: white;
   padding-left: 10px;
+  background-color: lightgray;
 `;
 
 export const Button = styled.button`
