@@ -29,14 +29,21 @@ const Result = () => {
       <R.ResultWrapper>
         <R.ResultContent>
           {images.map((image, idx) => (
-            <R.UserImg
-              key={idx}
-              src={image}
-              alt={`Image ${idx + 1}`}
-              onClick={() => handleImageClick(image)}
-              className={selectedImages.includes(image) ? 'selected' : ''}
-            />
+            <div>
+              <R.UserImg
+                key={idx}
+                src={image}
+                alt={`Image ${idx + 1}`}
+                onClick={() => handleImageClick(image)}
+                className={selectedImages.includes(image) ? 'selected' : ''}
+              />
+            </div>
           ))}
+          <R.SelectContainer>
+            <p>select photos</p>
+            <p>사진을 골라주세요</p>
+            <p>{selectedImages.length}/4</p>
+          </R.SelectContainer>
         </R.ResultContent>
       </R.ResultWrapper>
       <R.PhotoContainer>

@@ -22,7 +22,6 @@ export const ResultContent = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 10px;
 
   @media print {
     -webkit-print-color-adjust: exact !important;
@@ -36,6 +35,40 @@ export const ResultContent = styled.div`
   }
 
   box-sizing: border-box;
+
+  & > div {
+    border: 1px solid gray;
+    box-sizing: border-box;
+    width: 300px;
+    height: 225px;
+    &:nth-child(1) {
+      border-top: 2px solid black;
+      border-left: 2px solid black;
+    }
+    &:nth-child(2) {
+      border-top: 2px solid black;
+    }
+    &:nth-child(3) {
+      border-top: 2px solid black;
+      border-right: 2px solid black;
+    }
+    &:nth-child(4) {
+      border-left: 2px solid black;
+    }
+    &:nth-child(6) {
+      border-right: 2px solid black;
+    }
+    &:nth-child(7) {
+      border-left: 2px solid black;
+    }
+    &:nth-child(8) {
+      border-bottom: 2px solid black;
+    }
+    &:nth-child(9) {
+      border-bottom: 2px solid black;
+      border-right: 2px solid black;
+    }
+  }
 `;
 
 export const UserImg = styled.img`
@@ -127,4 +160,27 @@ export const JFrameImage = styled.img`
   position: absolute;
   width: 100%;
   height: auto;
+`;
+
+export const SelectContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  p:nth-child(1) {
+    color: lightgray;
+    font-size: 20px;
+  }
+
+  p:nth-child(2) {
+    color: gray;
+    font-size: 25px;
+  }
+
+  p:nth-child(3) {
+    color: black;
+    font-size: 50px;
+  }
 `;
