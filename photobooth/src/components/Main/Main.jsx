@@ -42,9 +42,9 @@ const Main = ({ event }) => {
   useEffect(() => {
     if (image.length === 8) {
       if (event == true) {
-        navigate('event/result');
+        navigate('/main/event/result');
       } else {
-        navigate('result');
+        navigate('/main/result');
       }
     }
   }, [image, navigate]);
@@ -84,7 +84,6 @@ const Main = ({ event }) => {
     }
   };
 
-  // Handle spacebar press
   const handleKeyDown = (event) => {
     if (event.code === 'Space') {
       event.preventDefault();
@@ -127,7 +126,7 @@ const Main = ({ event }) => {
           style={{ transform: 'scaleX(-1)' }}
         />
         <canvas ref={canvasRef} className="canvas" />
-        {event && <M.FramingImage src={getFrameImage()} alt="Framing" />}
+        {event && !loading && <M.FramingImage src={getFrameImage()} alt="Framing" />}
         {flash && <M.FlashOverlay />}
         <M.InstructionMessage>
           {countdown > 0 ? `촬영 중입니다. ${countdown}초 후 촬영됩니다.` : '스페이스바를 눌러 촬영을 시작하세요'}

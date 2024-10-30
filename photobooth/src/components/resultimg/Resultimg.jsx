@@ -2,10 +2,12 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 import { imageState, selectedImageState } from '../../global/image';
 import * as R from './Resultimg.style';
+import { useNavigate } from 'react-router-dom';
 
 const Result = ({ event }) => {
   const [images] = useRecoilState(imageState);
   const [selectedImages, setSelectedImages] = useRecoilState(selectedImageState);
+  const navigate = useNavigate();
 
   const handleImageClick = (image) => {
     setSelectedImages((prevSelected) => {
@@ -19,7 +21,11 @@ const Result = ({ event }) => {
       }
     });
   };
-  const handleNextAction = () => {};
+  const handleNextAction = () => {
+    console.log('1');
+    navigate('/main/last');
+  };
+
   const handlePrint = () => {};
   const today = new Date();
   const formattedDate = `${today.getFullYear()}.${String(today.getMonth() + 1).padStart(2, '0')}.${String(
